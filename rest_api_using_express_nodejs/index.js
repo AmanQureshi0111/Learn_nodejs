@@ -8,6 +8,27 @@ const fs=require("fs");
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+//user-defined middle-ware
+// app.use((req,res,next)=>{
+//     // res.json({message:"Hello from middle-ware 1"})
+//     req.myUserName="AmanQureshi";
+//     console.log("Hello from middle-ware 1");
+//     next();
+// });
+
+app.use((req,res,next)=>{
+    // res.json({message:"hello from middle-ware 2"});
+    // console.log("Hello from middle-ware 2 and my user_name is ",req.myUserName);
+    
+    //add custom header for additional data
+    // req.setHeader('X-myName','Aman Qureshi'); // this is wrong, req → incoming request (you read headers from it)
+    res.setHeader('X-myName','Aman Qureshi'); // res → outgoing response (you set headers on it) 
+    console.log(req.headers);
+
+    fs.appendFile('log.txt',`${new Date().toLocaleString()}: ${req.method}: ${req.path} \n`,(err,data)=>{
+        next();
+    })
+})
 //get in html format
 app.get("/users",(req,res)=>{
     const html=`
@@ -27,6 +48,9 @@ app.get('/api/users',(req,res)=>{
 app.post('/api/users',(req,res)=>{
     const body=req.body;
     console.log("body",body);
+    if(!body || !body.first_name || !body.last_name || !body.gender || !body.email || !body.job_title){
+        res.status(400).json({message:"all fields are required"});
+    }
     users.push({id: users.length+1,...body});
     fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
         res.json({status:'success',id:users.length});
