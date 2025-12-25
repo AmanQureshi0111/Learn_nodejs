@@ -1,0 +1,9 @@
+25/12/2025, 9:21:39 pm: GET: /api/users 
+25/12/2025, 9:22:04 pm: GET: /api/users 
+25/12/2025, 9:25:13 pm: GET: /api/users 
+25/12/2025, 9:30:15 pm: GET: /api/users 
+25/12/2025, 9:30:38 pm: GET: /api/users 
+25/12/2025, 9:31:39 pm: POST: /api/users/ 
+25/12/2025, 9:31:45 pm: GET: /api/users 
+25/12/2025, 9:33:38 pm: DELETE: /api/users/'694b78174042514fdfc68573 
+25/12/2025, 9:33:51 pm: DELETE: /api/users/694b78174042514fdfc68573 
