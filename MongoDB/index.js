@@ -87,7 +87,8 @@ app.route('/api/users/:id')
     res.json(user);
 }).patch(async(req,res)=>{
     //edit the user with id
-    await User.findByIdAndUpdate(req.params.id,{lastName:'Changed'});
+
+    await User.findByIdAndUpdate(req.params.id,{lastName:req.body.lastName});
     res.json({msg:'updated Successfully'})
 }).delete(async(req,res)=>{
     await User.findByIdAndDelete(req.params.id);

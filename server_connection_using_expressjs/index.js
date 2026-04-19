@@ -8,7 +8,7 @@ const app=express();
 // using http
 function myHandler(req,res){
     if(req.url==="/fevicon.ico") return res.end();
-    const log=`${Date.now()}: ${req.url} ${req.method} New Req Recieved\n`;
+    const log=`${Date.now()}: ${req.url} ${req.method} New Req Received\n`;
     const myUrl=url.parse(req.url,true);
     console.log(myUrl);
     fs.appendFile("log.txt",log,(err,data)=>{

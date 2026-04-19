@@ -14,7 +14,7 @@ fs.appendFileSync("./test.txt","\nCSE with Bio")
 
 fs.readFile("./test.txt","utf8",(err,result)=>{
     if(err){
-        console.log("eroors= ",err)
+        console.log("errors= ",err)
     }else{
         console.log(result);
     }
