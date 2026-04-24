@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+    <title><%= blog.title %></title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <h1 class="mb-3"><%= blog.title %></h1>
+        <% if (blog.coverImageURL) { %>
+            <img src="<%= blog.coverImageURL %>" class="img-fluid rounded mb-3" alt="Blog cover image">
+        <% } %>
+        <p class="text-muted">
+            By <%= blog.createdBy?.fullName || 'Unknown author' %>
+        </p>
+        <p><%= blog.body %></p>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+
+</html>
