@@ -1,5 +1,9 @@
 const JWT= require("jsonwebtoken");
-const secret= "fghjkgbhdsnegvfejbfhjehbfhjebf545sfbshf";
+const secret = process.env.JWT_SECRET;
+
+if (!secret) {
+    throw new Error("JWT_SECRET is required. Set it in environment variables.");
+}
 
 function createTokenForUser(user){
     const payload={

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express= require("express")
 const app=express()
 const path=require("path");
@@ -8,10 +9,15 @@ const cookieParser = require('cookie-parser');
 const {checkForAuthenticationCookie} = require('./middlewares/authentication')
 const Blog=require('./models/blog');
 
-const PORT=8000
+const PORT = process.env.PORT || 8000;
+const MONGO_URL = process.env.MONGO_URL;
+
+if (!MONGO_URL) {
+    throw new Error("MONGO_URL is required. Set it in environment variables.");
+}
 
 // connect mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/blogify')
+mongoose.connect(MONGO_URL)
         .then((e)=>{
             console.log("mongodb connected")
         })
@@ -40,5 +46,5 @@ app.get('/',async (req,res)=>{
 })
 
 app.listen(PORT,()=>{
-    console.log(("Server listening on PORT 8000"));
+    console.log((`Server listening on PORT ${PORT}`));
 })
