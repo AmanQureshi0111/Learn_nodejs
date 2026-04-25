@@ -10,7 +10,7 @@
     <%- include('./partials/nav') %>
         <% if (locals.user) { %>
             <div class="container mt-4">
-                <h1 class="h4">Welcome, <%= user.email %>
+                <h1 class="h4">Welcome, <%= locals.user.email %>
                 </h1>
             </div>
             <% } %>
